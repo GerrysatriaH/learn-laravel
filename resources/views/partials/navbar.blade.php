@@ -10,10 +10,10 @@
                     <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}"href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($title === "About") ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{ ($title === "Product") ? 'active' : '' }}" href="/product">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($title === "Blogs") ? 'active' : '' }}" href="/posts">Blogs</a>
+                    <a class="nav-link {{ ($title === "About") ? 'active' : '' }}" href="/about">About</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
