@@ -9,7 +9,7 @@
         <p>{{ $posts['desc'] }}</p>
 
         {{-- Without Blade Escape Character, So if there is tag html or SQL query in value, then tag or SQL query will be execute by program--}}
-        {{-- {!! $posts['desc'] !!} --}}
+        {{-- Example : {!! $posts['desc'] !!} --}}
     </article>
     <a href="/product">Back</a>
 @endsection
