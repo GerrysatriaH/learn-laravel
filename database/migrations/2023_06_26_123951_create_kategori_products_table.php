@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('kategori_products', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->text('desc');
-            $table->integer('price');
-            $table->integer('qty');
-            $table->timestamp('add_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('kategori_products');
     }
 };

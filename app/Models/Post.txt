@@ -32,3 +32,12 @@ class Post_
         return $posts->firstWhere('slug', $slug);
     }
 }
+
+// PHP artisan tinker to insert data
+App\Models\Post::create([
+    'name' => 'Indomie',
+    'slug' => 'indomie',
+    'desc' => 'Indomie Seleraku',
+    'price'=> 3500,
+    'qty'  => 10
+])

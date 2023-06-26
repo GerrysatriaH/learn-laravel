@@ -14,10 +14,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($id){
+    public function show(Post $post){
         return view('post', [
             "title" => "Detail Product",
-            "posts" => Post::find($id)
+            "posts" => $post
         ]);
     }
 }

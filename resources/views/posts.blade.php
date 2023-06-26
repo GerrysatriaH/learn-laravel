@@ -21,7 +21,7 @@
                     <td>{{ $item['price'] }}</td>
                     <td>{{ $item['qty'] }}</td>
                     <td>
-                        <a href="/product/{{ $item['id'] }}" class="btn btn-primary">Show</a>
+                        <a href="/product/{{ $item['slug'] }}" class="btn btn-primary">Show</a>
                     </td>
                 </tr>
             @endforeach
