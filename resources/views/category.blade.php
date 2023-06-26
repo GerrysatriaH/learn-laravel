@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+    <h3 class="mb-5">Category : {{ $category }}</h3>
     <table class="table">
         <thead>
             <tr>
@@ -28,4 +29,3 @@
         </tbody>
     </table>
 @endsection
-

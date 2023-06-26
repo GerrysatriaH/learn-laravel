@@ -10,16 +10,22 @@ class Post extends Model
     use HasFactory;
 
     // Only what is defined is fillable
-    protected $fillable = [
-        'image', 
-        'name', 
-        'slug',
-        'desc',
-        'price',
-        'qty',
-        'add_at'
-    ];
+    // protected $fillable = [
+    //     'id_kategori',
+    //     'image', 
+    //     'name', 
+    //     'slug',
+    //     'desc',
+    //     'price',
+    //     'qty',
+    //     'add_at'
+    // ];
 
     // id can't be filled in, and the rest is fillable
-    // Example : protected $guarded = ['id'];
+    protected $guarded = ['id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

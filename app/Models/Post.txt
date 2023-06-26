@@ -35,9 +35,14 @@ class Post_
 
 // PHP artisan tinker to insert data
 App\Models\Post::create([
-    'name' => 'Indomie',
-    'slug' => 'indomie',
-    'desc' => 'Indomie Seleraku',
-    'price'=> 3500,
+    'category_id' => 2,
+    'name' => 'Fruity',
+    'slug' => 'fruity',
+    'price'=> 5000,
     'qty'  => 10
+])
+
+App\Models\Category::create([
+    'name' => 'Minuman',
+    'slug' => 'minuman'
 ])

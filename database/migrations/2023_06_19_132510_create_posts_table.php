@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');
             $table->string('image')->nullable();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('desc');
             $table->integer('price');
             $table->integer('qty');
             $table->timestamp('add_at')->nullable();

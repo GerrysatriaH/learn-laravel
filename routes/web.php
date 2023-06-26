@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/product', [PostController::class, 'index']);
+Route::get('about', [AboutController::class, 'index']);
+Route::get('product', [PostController::class, 'index']);
 Route::get('product/{post:slug}', [PostController::class, 'show']);
+Route::get('categories', function(){
+    return view('categories', [
+        'title' => 'Categories',
+        'categories' => Category::all()
+    ]);
+});
+Route::get('categories/{category:slug}', function(Category $category){
+    return view('category', [
+        'title' => $category->name,
+        'posts' => $category->posts,
+        'category' => $category->name
+    ]);
+});
