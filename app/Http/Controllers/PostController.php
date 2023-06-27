@@ -9,15 +9,17 @@ class PostController extends Controller
 {
     public function index(){
         return view('posts', [
-            "title" => "List Product",
-            "posts" => Post::get()
+            'title' => 'List Product',
+            'active' => 'product',
+            'posts' => Post::get()
         ]);
     }
 
     public function show(Post $post){
         return view('post', [
-            "title" => "Detail Product",
-            "post" => $post
+            'title' => 'Detail Product',
+            'active' => 'product',
+            'post' => $post
         ]);
     }
 }
