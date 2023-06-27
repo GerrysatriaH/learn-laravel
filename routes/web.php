@@ -28,9 +28,8 @@ Route::get('categories', function(){
     ]);
 });
 Route::get('categories/{category:slug}', function(Category $category){
-    return view('category', [
-        'title' => $category->name,
-        'posts' => $category->posts,
-        'category' => $category->name
+    return view('posts', [
+        'title' => "List Product by Category : $category->name",
+        'posts' => $category->posts->load('category')
     ]);
 });

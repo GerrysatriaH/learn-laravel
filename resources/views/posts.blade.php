@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+    <h3 class="mb-5">{{ $title }}</h3>
     <table class="table">
         <thead>
             <tr>
