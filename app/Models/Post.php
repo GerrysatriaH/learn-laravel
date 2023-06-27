@@ -22,6 +22,7 @@ class Post extends Model
 
     // id can't be filled in, and the rest is fillable
     protected $guarded = ['id'];
+    protected $with = ['category'];
 
     public function category()
     {

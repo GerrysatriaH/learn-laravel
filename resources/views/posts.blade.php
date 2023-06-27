@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('container')
-    <h3 class="mb-5">{{ $title }}</h3>
-    <table class="table">
-        <thead>
+    <h3 class="mb-4">{{ $title }}</h3>
+    <table class="table table-striped text-center">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Produk</th>
@@ -13,20 +13,25 @@
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($posts as $item)
-                <tr>
-                    <th scope="row">{{ $item['id'] }}</th>
-                    <td>{{ $item['name'] }}</td>
-                    <td>{{ $item->category->name }}</td>
-                    <td>{{ $item['price'] }}</td>
-                    <td>{{ $item['qty'] }}</td>
-                    <td>
-                        <a href="/product/{{ $item['slug'] }}" class="btn btn-primary">Show</a>
-                    </td>
-                </tr>
-            @endforeach
+        <tbody class="align-middle">
+            @if ($posts->count())
+                @foreach ($posts as $item)
+                    <tr>
+                        <th scope="row">{{ $item['id'] }}</th>
+                        <td>{{ $item['name'] }}</td>
+                        <td>
+                            <a href="/categories/{{ $item->category->slug }}" class="text-decoration-none">{{ $item->category->name }} </a>
+                        </td>
+                        <td>{{ $item['price'] }}</td>
+                        <td>{{ $item['qty'] }}</td>
+                        <td>
+                            <a href="/product/{{ $item['slug'] }}" class="btn btn-primary">Show</a>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
+                <tr><td colspan="6">No data found</td></tr>
+            @endif    
         </tbody>
     </table>
 @endsection
-

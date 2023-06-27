@@ -1,15 +1,15 @@
 @extends('layouts.main')
 
 @section('container')
-    <table class="table">
-        <thead>
+    <table class="table table-striped text-center">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama kategori</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="align-middle">
             @foreach ($categories as $item)
                 <tr>
                     <th scope="row">{{ $item['id'] }}</th>

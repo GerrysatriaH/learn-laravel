@@ -10,7 +10,7 @@ class PostController extends Controller
     public function index(){
         return view('posts', [
             "title" => "List Product",
-            "posts" => Post::with(['category'])->get()
+            "posts" => Post::get()
         ]);
     }
 
