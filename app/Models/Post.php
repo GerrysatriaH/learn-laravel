@@ -14,8 +14,7 @@ class Post extends Model
     //     'id_kategori',
     //     'image', 
     //     'name', 
-    //     'slug',
-    //     'desc',
+    //     'slug',,
     //     'price',
     //     'qty',
     //     'add_at'
