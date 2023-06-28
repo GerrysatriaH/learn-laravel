@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Latihan laravel | {{ $title }}</title>
     <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 <body>
 
