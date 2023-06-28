@@ -13,7 +13,7 @@
                     <h5 class="card-title">{{ $post['name'] }}</h5>
                     <p class="card-text">Rp. {{ $post['price'] }}</p>
                     <p class="card-text">Kategori : 
-                        <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }} </a>
+                        <a href="/product?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }} </a>
                     </p>
                     <p class="card-text"><small class="text-body-secondary">Stok : {{ $post['qty'] }}</small></p>
                     {{-- Without Blade Escape Character, So if there is tag html or SQL query in value, then tag or SQL query will be execute by program--}}

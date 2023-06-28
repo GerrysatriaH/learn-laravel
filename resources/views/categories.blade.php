@@ -15,7 +15,7 @@
                     <th scope="row">{{ $item['id'] }}</th>
                     <td>{{ $item['name'] }}</td>
                     <td>
-                        <a href="/categories/{{ $item['slug'] }}" class="btn btn-primary">Show</a>
+                        <a href="/product?category={{ $item['slug'] }}" class="btn btn-primary">Show</a>
                     </td>
                 </tr>
             @endforeach

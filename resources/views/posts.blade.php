@@ -1,7 +1,22 @@
 @extends('layouts.main')
 
 @section('container')
-    <h3 class="mb-4">{{ $title }}</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="mb-4">{{ $title }}</h3>
+        </div>
+        <div class="col-md-6">
+            <form action="/product" method="get">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search here" name="search" value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <table class="table table-striped text-center">
         <thead class="table-dark">
             <tr>
@@ -20,7 +35,7 @@
                         <th scope="row">{{ $item['id'] }}</th>
                         <td>{{ $item['name'] }}</td>
                         <td>
-                            <a href="/categories/{{ $item->category->slug }}" class="text-decoration-none">{{ $item->category->name }} </a>
+                            <a href="/product?category={{ $item->category->slug }}" class="text-decoration-none">{{ $item->category->name }} </a>
                         </td>
                         <td>{{ $item['price'] }}</td>
                         <td>{{ $item['qty'] }}</td>
@@ -34,4 +49,6 @@
             @endif    
         </tbody>
     </table>
+
+    {{ $posts->links() }}
 @endsection
