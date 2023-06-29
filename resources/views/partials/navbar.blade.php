@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top bg-dark" data-bs-theme="dark">
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top bg-dark">
     <div class="container px-5">
         <a class="navbar-brand" href="#">Laracrud</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                             <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-window"></i> My Dashboard</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form action="" method="post">
+                                <form action="/logout" method="post">
                                     @csrf
                                     <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-left"></i> Logout</button>
                                 </form>

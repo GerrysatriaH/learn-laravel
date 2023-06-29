@@ -32,7 +32,7 @@
             @if ($posts->count())
                 @foreach ($posts as $item)
                     <tr>
-                        <th scope="row">{{ $item['id'] }}</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $item['name'] }}</td>
                         <td>
                             <a href="/product?category={{ $item->category->slug }}" class="text-decoration-none">{{ $item->category->name }} </a>

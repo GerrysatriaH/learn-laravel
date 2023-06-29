@@ -49,13 +49,14 @@ class DatabaseSeeder extends Seeder
             'slug' => 'minuman'
         ]);
 
-        // User::create([
-        //     'name' => 'Gerry Satria Halim',
-        //     'email' => 'gerrysatria@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
-
         User::factory(5)->create();
         Post::factory(10)->create();
+
+        User::create([
+            'name' => 'Gerry Satria Halim',
+            'username' => 'gerry',
+            'email' => 'gerry@gmail.com',
+            'password' => bcrypt('12345')
+        ]);
     }
 }
