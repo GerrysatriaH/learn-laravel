@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('image')->nullable();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->integer('price');
             $table->integer('qty');
             $table->timestamp('add_at')->nullable();
