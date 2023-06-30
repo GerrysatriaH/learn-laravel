@@ -42,12 +42,16 @@
                                 <a href="/dashboard/posts/{{ $item->slug }}" class="badge bg-info">
                                     <span data-feather="eye"></span>
                                 </a>
-                                <a href="http://" class="badge bg-warning">
+                                <a href="/dashboard/posts/{{ $item->slug }}/edit" class="badge bg-warning">
                                     <span data-feather="edit"></span>
                                 </a>
-                                <a href="http://" class="badge bg-danger">
-                                    <span data-feather="trash"></span>
-                                </a>
+                                <form action="/dashboard/posts/{{ $item->slug }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="badge bg-danger border-0" onclick="return confirm('Yakin ingin menghapus data ini ?')">
+                                        <span data-feather="trash"></span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

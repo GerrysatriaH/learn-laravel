@@ -2,24 +2,32 @@
 
 @section('container')
 
-<div class="action-button mt-4">
-    <a href="/dashboard/posts" class="btn btn-success small">
-        <span data-feather="arrow-left"></span> Back
-    </a>
-    <a href="/dashboard/posts" class="btn btn-warning small">
-        <span data-feather="edit"></span> Edit
-    </a>
-    <a href="/dashboard/posts" class="btn btn-danger small">
-        <span data-feather="trash"></span> Delete
-    </a>
-</div>
+    <div class="action-button mt-4">
+        <a href="/dashboard/posts" class="btn btn-success small">
+            <span data-feather="arrow-left"></span> Back
+        </a>
+        <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-warning small">
+            <span data-feather="edit"></span> Edit
+        </a>
+        <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+            @method('delete')
+            @csrf
+            <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini ?')">
+                <span data-feather="trash"></span> Delete
+            </button>
+        </form>
+    </div>
     
     <div class="card my-3" style="max-width: 1080px;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ $post['image'] }}" class="img-fluid rounded-start" alt="{{ $post['name'] }}">
+            <div class="col-md-3">
+                @if ($post->image)
+                    <img src="{{ asset('storage/'.$post->image) }}" class="img-fluid rounded-start" alt="{{ $post['name'] }}" width="250px" height="250px">
+                @else
+                    <img src="https://source.unsplash.com/250x250/?product" class="img-fluid rounded-start" alt="{{ $post['name'] }}">
+                @endif
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     {{-- With Blade Escape Character--}}
                     <h5 class="card-title">{{ $post['name'] }}</h5>

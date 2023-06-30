@@ -4,10 +4,14 @@
     <h3 class="mb-4">{{ $title }}</h3>
     <div class="card mb-3" style="max-width: 1080px;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ $post['image'] }}" class="img-fluid rounded-start" alt="{{ $post['name'] }}">
+            <div class="col-md-3">
+                @if ($post->image)
+                    <img src="{{ asset('storage/'.$post->image) }}" class="img-fluid rounded-start" alt="{{ $post['name'] }}" width="250px" height="250px">
+                @else
+                    <img src="https://source.unsplash.com/250x250/?product" class="img-fluid rounded-start" alt="{{ $post['name'] }}">
+                @endif
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     {{-- With Blade Escape Character--}}
                     <h5 class="card-title">{{ $post['name'] }}</h5>

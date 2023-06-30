@@ -37,10 +37,15 @@ class DashboardPostController extends Controller
         $validateData = $request->validate([
             'name'          => 'required|max:255',
             'slug'          => 'required|unique:posts',
+            'image'         => 'image|file|max:4096',
             'category_id'   => 'required',
             'price'         => 'required',
             'qty'           => 'required'
         ]);
+
+        if($request->file('images')){
+            $validateData['image'] = $request->file('image')->store('post-image');
+        }
 
         Post::create($validateData);
         return redirect('/dashboard/posts')->with('success', 'Data berhasil ditambah');
@@ -61,7 +66,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -69,7 +77,20 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = ([
+            'name'          => 'required|max:255',
+            'category_id'   => 'required',
+            'price'         => 'required',
+            'qty'           => 'required'
+        ]);
+
+        if($request->slug != $post->slug){
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validateData = $request->validate($rules);
+        Post::where('id', $post->id)->update($validateData);
+        return redirect('/dashboard/posts')->with('success', 'Data berhasil di ubah');
     }
 
     /**
@@ -77,7 +98,8 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect('/dashboard/posts')->with('success', 'Data berhasil dihapus');
     }
 
     public function checkSlug(Request $request)
