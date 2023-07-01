@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardPostController extends Controller
 {
@@ -43,7 +44,7 @@ class DashboardPostController extends Controller
             'qty'           => 'required'
         ]);
 
-        if($request->file('images')){
+        if($request->file('image')){
             $validateData['image'] = $request->file('image')->store('post-image');
         }
 
@@ -68,7 +69,7 @@ class DashboardPostController extends Controller
     {
         return view('dashboard.posts.edit', [
             'post' => $post,
-            'categories' => Category::all()
+            'category' => Category::all()
         ]);
     }
 
@@ -80,6 +81,7 @@ class DashboardPostController extends Controller
         $rules = ([
             'name'          => 'required|max:255',
             'category_id'   => 'required',
+            'image'         => 'image|file|max:4096',
             'price'         => 'required',
             'qty'           => 'required'
         ]);
@@ -87,8 +89,13 @@ class DashboardPostController extends Controller
         if($request->slug != $post->slug){
             $rules['slug'] = 'required|unique:posts';
         }
-
         $validateData = $request->validate($rules);
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $validateData['image'] = $request->file('image')->store('post-image');
+        }
         Post::where('id', $post->id)->update($validateData);
         return redirect('/dashboard/posts')->with('success', 'Data berhasil di ubah');
     }
@@ -98,6 +105,10 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->image){
+            Storage::delete($post->image);
+        }
+        
         Post::destroy($post->id);
         return redirect('/dashboard/posts')->with('success', 'Data berhasil dihapus');
     }

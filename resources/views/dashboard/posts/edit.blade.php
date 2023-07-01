@@ -46,8 +46,15 @@
             </div>
             <div class="row mb-3">
                 <label for="image" class="col-sm-2 col-form-label">Image</label>
+                <input type="hidden" name="oldImage" id="oldImage" value="{{ $post->image }}">
+                @if ($post->image)
+                    <img src="{{ asset('storage/'.$post->image) }}" class="img-preview img-fluid col-sm-5 mb-3 d-block">
+                @else
+                    <img class="img-preview img-fluid col-sm-5 mb-3">
+                @endif
+                
                 <div class="col-sm-10">
-                    <input class="form-control @error('image') is-invalid @endError" type="file" id="image" name="image">
+                    <input class="form-control @error('image') is-invalid @endError" type="file" id="image" name="image" onchange="previewImage()">
                 </div>
             </div>
             <div class="row mb-3">
@@ -84,5 +91,19 @@
             .then(response => response.json())
             .then(data => slug.value=data.slug)
         })
+
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection
